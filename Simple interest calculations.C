@@ -1,4 +1,4 @@
-//Formula for calculating simple interest
+//Simple interest calculation 
 #include <stdio.h>
 
 int main() { 
