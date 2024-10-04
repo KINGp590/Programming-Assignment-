@@ -17,6 +17,7 @@ int main() {
  //formula for simple interest 
  interest = (principal * rate * time) / 100;
 
+ // the final output 
  printf("Simple Interest = %.2f\n", interest); 
 return 0; 
 }
