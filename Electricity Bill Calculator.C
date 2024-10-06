@@ -8,10 +8,10 @@ int main() {
 
     printf("Enter Customer ID: ");
     scanf("%d", &customerID);
-    
+
     printf("Enter Customer Name: ");
     scanf("%s", customerName);
-    
+
     printf("Enter Units Consumed: ");
     scanf("%d", &unitsConsumed);
 
@@ -28,7 +28,7 @@ int main() {
 
     //  total bill formula
     totalBill = unitsConsumed * chargePerUnit;
-
+    //the surcharge condition: if the units are more than 400 then the surcharge of 0.15 of the total bill should be added tothe total bill
     if (totalBill > 400) {
         surcharge = totalBill * 0.15;
     }
@@ -37,7 +37,7 @@ int main() {
     if (totalBill < 100) {
         totalBill = 100;
     } else {
-        totalBill += surcharge;
+        totalBill += surcharge;// the surcharge added to the total bill but if only the units are more than 400
     }
 
     // final output
