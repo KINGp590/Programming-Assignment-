@@ -46,7 +46,7 @@ int main() {
     printf("Customer Name: %s\n", customerName);
     printf("Units Consumed: %d\n", unitsConsumed);
     printf("Charge Per Unit: %.2f Kshs\n", chargePerUnit);
-    printf("Total Amount to Pay: %.2f Kshs\n", totalBill);
+    printf("Total Amount to Pay: %.2f Kshs\n",  totalBill);
 
 return 0;
 }
