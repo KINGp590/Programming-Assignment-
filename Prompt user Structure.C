@@ -18,8 +18,7 @@ int main() {//let the number of students be i
     scanf("%d", &num_students);
 
     struct student students[num_students];
-    
-    // Input data for each student
+    //students' data
     for (i = 0; i < num_students; i++) {
         printf("\nEntering data for student %d\n", i + 1);
         
