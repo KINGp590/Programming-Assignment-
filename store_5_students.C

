@@ -22,5 +22,5 @@ int main() {
 
     fclose(file);
     printf("Data saved to students.txt successfully.\n");
-    return 0;
+return 0;
 }
