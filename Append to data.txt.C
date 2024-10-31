@@ -1,60 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LENGTH 100
-
-void writeSentenceToFile() {
-    FILE *file = fopen("data.txt", "w");
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
+void writeToFile() {
+    char sentence[101];
+    FILE *fptr;
+    
+    fptr = fopen("data.txt", "w");
+    if (fptr == NULL) {
+        printf("Error!");
+        exit(1);
     }
-
-    char sentence[MAX_LENGTH + 1];
-    printf("Enter a sentence (up to 100 characters): ");
+    
+    printf("Enter a sentence:\n");
     fgets(sentence, sizeof(sentence), stdin);
-
-    fprintf(file, "%s", sentence);
-    fclose(file);
-    printf("Sentence written to data.txt\n");
+    
+    fprintf(fptr, "%s", sentence);
+    fclose(fptr);
 }
 
-void readFileContent() {
-    FILE *file = fopen("data.txt", "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
+void readFromFile() {
+    char sentence[101];
+    FILE *fptr;
+    
+    fptr = fopen("data.txt", "r");
+    if (fptr == NULL) {
+        printf("Error!");
+        exit(1);
     }
-
-    char content[MAX_LENGTH + 1];
-    printf("Content of data.txt:\n");
-    while (fgets(content, sizeof(content), file) != NULL) {
-        printf("%s", content);
-    }
-    fclose(file);
+    
+    fgets(sentence, sizeof(sentence), fptr);
+    printf("Content of the file:\n%s", sentence);
+    fclose(fptr);
 }
 
-void appendSentenceToFile() {
-    FILE *file = fopen("data.txt", "a");
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
+void appendToFile() {
+    char sentence[101];
+    FILE *fptr;
+    
+    fptr = fopen("data.txt", "a");
+    if (fptr == NULL) {
+        printf("Error!");
+        exit(1);
     }
-
-    char sentence[MAX_LENGTH + 1];
-    printf("Enter a sentence to append (up to 100 characters): ");
+    
+    printf("Enter a sentence to append:\n");
     fgets(sentence, sizeof(sentence), stdin);
-
-    fprintf(file, "%s", sentence);
-    fclose(file);
-    printf("Sentence appended to data.txt\n");
+    
+    fprintf(fptr, "%s", sentence);
+    fclose(fptr);
 }
 
 int main() {
-    writeSentenceToFile();
-    readFileContent();
-    appendSentenceToFile();
-    readFileContent();
+    int choice;
+
+    while (1) {
+        printf("\n1. Write to file\n");
+        printf("2. Read from file\n");
+        printf("3. Append to file\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        getchar();
+        
+        if (choice == 1) writeToFile();
+        else if (choice == 2) readFromFile();
+        else if (choice == 3) appendToFile();
+        else if (choice == 4) exit(0);
+        else printf("Invalid choice.\n");
+    }
 
     return 0;
 }
