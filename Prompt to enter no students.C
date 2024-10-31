@@ -1,47 +1,37 @@
 #include <stdio.h>
-
-struct Student {
-    char name[50];
-    int marks;
-};
+#include <stdlib.h>
 
 int main() {
-    int n;
-    printf("Enter number of students: ");
+    char name[50];
+    int mark, n;
+    FILE *fptr;
+
+    fptr = fopen("C:\Users\user\OneDrive\Desktop\assignments.C\loop codes.c\data.txt", "a");
+    if (fptr == NULL) {
+        printf("Error opening file!");
+        exit(1);
+    }
+
+    printf("Enter the number of students\n");
     scanf("%d", &n);
-
-    struct Student students[n];
-    FILE *file = fopen("students.bin", "wb");
-
-    if (file == NULL) {
-        printf("Error opening file!\n");
+    
+    if (n < 1 || n > 5) {
+        printf("Invalid number of students. Please enter a value between 1 and 5.\n");
+        fclose(fptr);
         return 1;
     }
+    
+    getchar();
 
     for (int i = 0; i < n; i++) {
-        printf("Enter name and marks of student %d: ", i + 1);
-        scanf("%s %d", students[i].name, &students[i].marks);
+        printf("Enter name of student %d:\n", i + 1);
+        fgets(name, sizeof(name), stdin);
+        printf("Enter marks of student %d:\n", i + 1);
+        scanf("%d", &mark);
+        getchar();
+        fprintf(fptr, "%s%d\n", name, mark);
     }
 
-    fwrite(students, sizeof(struct Student), n, file);
-    fclose(file);
-    printf("Data written to students.bin successfully.\n");
-
-    file = fopen("students.bin", "rb");
-
-    if (file == NULL) {
-        printf("Error opening file!\n");
-        return 1;
-    }
-
-    struct Student read_students[n];
-    fread(read_students, sizeof(struct Student), n, file);
-    fclose(file);
-
-    printf("Data read from students.bin:\n");
-    for (int i = 0; i < n; i++) {
-        printf("Name: %s, Marks: %d\n", read_students[i].name, read_students[i].marks);
-    }
-
-return 0;
+    fclose(fptr);
+    return 0;
 }
