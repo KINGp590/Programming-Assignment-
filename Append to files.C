@@ -1,27 +1,33 @@
-
 #include <stdio.h>
-
-struct Student {
-    char name[50];
-    int marks;
-};
+#include <stdlib.h>
 
 int main() {
-    struct Student students[5];
-    FILE *file = fopen("students.txt", "w");
+    char name[50];
+    int mark, n;
+    FILE *fptr;
 
-    if (file == NULL) {
-        printf("Error opening file!\n");
-        return 1;
+    fptr = fopen("C:\\Users\\user\\OneDrive\\Desktop\\assignments.C\\loop codes.c\\data.txt", "a");
+    if (fptr == NULL) {
+        printf("Error opening file!");
+        exit(1);
     }
 
-    for (int i = 0; i < 5; i++) {
-        printf("Enter name and marks of student %d: ", i + 1);
-        scanf("%s %d", students[i].name, &students[i].marks);
-        fprintf(file, "Name: %s, Marks: %d\n", students[i].name, students[i].marks);
+    do {
+        printf("Enter the number of students (1 to 5):\n");
+        scanf("%d", &n);
+    } while (n < 1 || n > 5);
+
+    getchar();
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter name of student %d:\n", i + 1);
+        fgets(name, sizeof(name), stdin);
+        printf("Enter marks of student %d:\n", i + 1);
+        scanf("%d", &mark);
+        getchar();
+        fprintf(fptr, "%s%d\n", name, mark);
     }
 
-    fclose(file);
-    printf("Data saved to students.txt successfully.\n");
+    fclose(fptr);
     return 0;
 }
