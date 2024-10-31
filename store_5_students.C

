@@ -16,13 +16,11 @@ int main() {
 
     for (int i = 0; i < 5; i++) {
         printf("Enter name and marks of student %d: ", i + 1);
-        scanf("%49s %d", students[i].name, &students[i].marks);
-
+        scanf("%s %d", students[i].name, &students[i].marks);
         fprintf(file, "Name: %s, Marks: %d\n", students[i].name, students[i].marks);
     }
 
     fclose(file);
     printf("Data saved to students.txt successfully.\n");
-
     return 0;
 }
